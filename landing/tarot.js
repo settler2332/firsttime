@@ -222,6 +222,9 @@ function startReading() {
   sub.style.opacity = '1';
   fortune.classList.remove('visible');
   fortune.innerHTML = '';
+  const lotto = document.getElementById('lottoSection');
+  lotto.classList.remove('visible');
+  lotto.querySelector('#lottoGames').innerHTML = '';
 
   renderCards(cards);
   renderFortune(cards);
@@ -235,11 +238,56 @@ function startReading() {
         setTimeout(() => {
           sub.style.opacity = '0';
           fortune.classList.add('visible');
+          renderLotto();
+          document.getElementById('lottoSection').classList.add('visible');
         }, 800);
       }
     }, 600 + i * 700);
   });
 }
+
+// ── 로또 ──
+
+function ballClass(n) {
+  if (n <= 10) return 'r1';
+  if (n <= 20) return 'r11';
+  if (n <= 30) return 'r21';
+  if (n <= 40) return 'r31';
+  return 'r41';
+}
+
+function drawLotto() {
+  const games = [];
+  for (let g = 0; g < 5; g++) {
+    const pool = Array.from({ length: 45 }, (_, i) => i + 1);
+    const picked = [];
+    for (let i = 0; i < 6; i++) {
+      const idx = Math.floor(Math.random() * pool.length);
+      picked.push(pool.splice(idx, 1)[0]);
+    }
+    games.push(picked.sort((a, b) => a - b));
+  }
+  return games;
+}
+
+function renderLotto() {
+  const container = document.getElementById('lottoGames');
+  container.innerHTML = '';
+  drawLotto().forEach((nums, i) => {
+    const row = document.createElement('div');
+    row.className = 'lotto-game';
+    row.innerHTML = `
+      <span class="lotto-game-num">${i + 1}게임</span>
+      <div class="lotto-balls">
+        ${nums.map(n => `<span class="lotto-ball ${ballClass(n)}">${n}</span>`).join('')}
+      </div>`;
+    container.appendChild(row);
+  });
+}
+
+document.getElementById('btnLottoRefresh').addEventListener('click', renderLotto);
+
+// ── 이벤트 ──
 
 document.getElementById('btnRead').addEventListener('click', () => {
   const intro = document.getElementById('tarotIntro');

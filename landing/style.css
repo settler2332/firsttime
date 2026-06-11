@@ -404,6 +404,107 @@ body::before {
   transition: background-color var(--t-mid), border-color var(--t-mid);
 }
 
+/* ── 로또 섹션 ── */
+
+.lotto-section {
+  border-top: 1px solid var(--line);
+  padding-top: 32px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
+}
+
+.lotto-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lotto-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.lotto-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.btn-lotto-refresh {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-secondary);
+  background: none;
+  border: 1px solid var(--line-bright);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color var(--t-fast), border-color var(--t-fast);
+  border-radius: 0;
+}
+
+.btn-lotto-refresh:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+.lotto-games {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lotto-game {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lotto-game-num {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  width: 32px;
+  flex-shrink: 0;
+}
+
+.lotto-balls {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.lotto-ball {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+/* 번호대별 공식 색상 */
+.lotto-ball.r1  { background: #f5c315; color: #333; }  /* 1-10  노랑 */
+.lotto-ball.r11 { background: #4b82f0; color: #fff; }  /* 11-20 파랑 */
+.lotto-ball.r21 { background: #e04040; color: #fff; }  /* 21-30 빨강 */
+.lotto-ball.r31 { background: #6e6e6e; color: #fff; }  /* 31-40 회색 */
+.lotto-ball.r41 { background: #43a86e; color: #fff; }  /* 41-45 초록 */
+
+/* ── 다시 뽑기 버튼 ── */
+
 .btn-retry {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -434,7 +535,9 @@ body::before {
 /* ── 반응형 ── */
 
 @media (max-width: 600px) {
-  .tarot-main     { padding: 48px 24px 56px; }
+  .tarot-main      { padding: 48px 24px 56px; }
   .tarot-cards-row { gap: 8px; }
-  .tc-name        { font-size: 9px; }
+  .tc-name         { font-size: 9px; }
+  .lotto-ball      { width: 30px; height: 30px; font-size: 10px; }
+  .lotto-balls     { gap: 5px; }
 }
