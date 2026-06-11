@@ -9,6 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
 </head>
 <body>
 
@@ -18,7 +24,7 @@
     <header class="site-header">
       <div class="header-dot"></div>
       <span class="header-label">AI SYNC CLUB</span>
-      <div class="header-dot"></div>
+      <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">LIGHT</button>
     </header>
 
     <!-- 히어로 섹션 -->
@@ -75,5 +81,6 @@
 
   </div>
 
+  <script src="script.js"></script>
 </body>
 </html>
