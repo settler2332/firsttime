@@ -1,6 +1,6 @@
 // ── Apps Script 배포 URL ──
 // Code.gs를 배포한 후 아래 URL을 교체하세요.
-const SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby5X-mvoti4GdsP4hyArQo_OA3QCDUmrLP7KOmkxAFuNAYa-3yt4mH9MPoxfpdVtxHE/exec';
 
 // ── 모달 열기/닫기 ──
 
@@ -31,11 +31,11 @@ function todayString() {
 document.getElementById('runForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const date     = document.getElementById('runDate').value;
-  const name     = document.getElementById('runName').value.trim();
+  const date = document.getElementById('runDate').value;
+  const name = document.getElementById('runName').value.trim();
   const distance = document.getElementById('runDist').value;
-  const status   = document.getElementById('runStatus');
-  const btn      = document.getElementById('runSubmit');
+  const status = document.getElementById('runStatus');
+  const btn = document.getElementById('runSubmit');
 
   if (!date || !name || !distance) return;
 
@@ -51,7 +51,7 @@ document.getElementById('runForm').addEventListener('submit', async (e) => {
 
   try {
     const url = `${SCRIPT_URL}?date=${encodeURIComponent(date)}&name=${encodeURIComponent(name)}&distance=${encodeURIComponent(distance)}`;
-    const res  = await fetch(url);
+    const res = await fetch(url);
     const data = await res.json();
 
     if (data.ok) {
