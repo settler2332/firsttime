@@ -215,7 +215,7 @@ function renderFortune(cards) {
 
 function startReading() {
   const cards = drawThree();
-  const sub = document.querySelector('.tarot-modal-sub');
+  const sub = document.getElementById('tarotSub');
   const fortune = document.getElementById('tarotFortune');
 
   sub.textContent = '카드를 뽑는 중입니다...';
@@ -241,22 +241,16 @@ function startReading() {
   });
 }
 
-document.getElementById('btnTarot').addEventListener('click', () => {
-  document.getElementById('tarotOverlay').classList.add('is-open');
-  document.body.style.overflow = 'hidden';
-  startReading();
-});
+document.getElementById('btnRead').addEventListener('click', () => {
+  const intro = document.getElementById('tarotIntro');
+  const reading = document.getElementById('tarotReading');
 
-document.getElementById('tarotClose').addEventListener('click', () => {
-  document.getElementById('tarotOverlay').classList.remove('is-open');
-  document.body.style.overflow = '';
+  intro.style.opacity = '0';
+  setTimeout(() => {
+    intro.classList.add('hidden');
+    reading.classList.add('visible');
+    startReading();
+  }, 220);
 });
 
 document.getElementById('btnRetry').addEventListener('click', startReading);
-
-document.getElementById('tarotOverlay').addEventListener('click', (e) => {
-  if (e.target === e.currentTarget) {
-    e.currentTarget.classList.remove('is-open');
-    document.body.style.overflow = '';
-  }
-});
