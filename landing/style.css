@@ -572,7 +572,7 @@ body::before {
 /* ── 뜀박질 입력 섹션 ── */
 
 .runner-section {
-  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   padding: 64px 48px 72px;
   display: flex;
   flex-direction: column;

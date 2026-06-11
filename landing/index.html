@@ -26,6 +26,31 @@
       <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">LIGHT</button>
     </header>
 
+    <!-- 뜀박질 입력 섹션 -->
+    <section class="runner-section">
+      <span class="tag runner-tag">RUNNING LOG</span>
+      <h2 class="runner-title">R37 RUNNERS<br>뜀박질 입력</h2>
+      <p class="runner-desc">날짜, 이름, 거리를 입력하면<br>구글 시트에 자동으로 기록됩니다.</p>
+
+      <form class="run-form" id="runForm" novalidate>
+        <div class="run-form-group">
+          <label class="run-form-label" for="runDate">날짜</label>
+          <input class="run-form-input" type="date" id="runDate" name="date" required />
+        </div>
+        <div class="run-form-group">
+          <label class="run-form-label" for="runName">이름</label>
+          <input class="run-form-input" type="text" id="runName" name="name" placeholder="이름을 입력하세요" required autocomplete="off" />
+        </div>
+        <div class="run-form-group">
+          <label class="run-form-label" for="runDist">거리 (km)</label>
+          <input class="run-form-input" type="number" id="runDist" name="distance"
+                 placeholder="0.0" step="0.1" min="0.1" max="999" required />
+        </div>
+        <p class="run-form-status" id="runStatus"></p>
+        <button class="run-form-submit run-submit-green" type="submit" id="runSubmit">저장하기 →</button>
+      </form>
+    </section>
+
     <!-- 타로 섹션 -->
     <main class="tarot-main">
 
@@ -57,31 +82,6 @@
       </section>
 
     </main>
-
-    <!-- 뜀박질 입력 섹션 -->
-    <section class="runner-section">
-      <span class="tag runner-tag">RUNNING LOG</span>
-      <h2 class="runner-title">R37 RUNNERS<br>뜀박질 입력</h2>
-      <p class="runner-desc">날짜, 이름, 거리를 입력하면<br>구글 시트에 자동으로 기록됩니다.</p>
-
-      <form class="run-form" id="runForm" novalidate>
-        <div class="run-form-group">
-          <label class="run-form-label" for="runDate">날짜</label>
-          <input class="run-form-input" type="date" id="runDate" name="date" required />
-        </div>
-        <div class="run-form-group">
-          <label class="run-form-label" for="runName">이름</label>
-          <input class="run-form-input" type="text" id="runName" name="name" placeholder="이름을 입력하세요" required autocomplete="off" />
-        </div>
-        <div class="run-form-group">
-          <label class="run-form-label" for="runDist">거리 (km)</label>
-          <input class="run-form-input" type="number" id="runDist" name="distance"
-                 placeholder="0.0" step="0.1" min="0.1" max="999" required />
-        </div>
-        <p class="run-form-status" id="runStatus"></p>
-        <button class="run-form-submit run-submit-green" type="submit" id="runSubmit">저장하기 →</button>
-      </form>
-    </section>
 
     <footer class="site-footer">
       <div class="header-dot"></div>
