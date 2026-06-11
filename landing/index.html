@@ -72,6 +72,41 @@
       </div>
     </section>
 
+    <!-- 구분선 -->
+    <div class="divider"></div>
+
+    <!-- 제휴 문의 섹션 -->
+    <section class="contact">
+      <div class="contact-inner">
+
+        <div class="section-label">CONTACT</div>
+
+        <p class="about-body">
+          제휴, 협업, 강연 요청 등 어떤 문의든 환영합니다.<br>
+          아래 양식을 작성해 주시면 빠르게 답변 드리겠습니다.
+        </p>
+
+        <form class="contact-form" action="https://formspree.io/f/mjgdeedg" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="name">이름</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="홍길동" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">이메일</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">문의 내용</label>
+            <textarea class="form-input form-textarea" id="message" name="message" placeholder="제휴 또는 협업 내용을 자유롭게 작성해 주세요." required></textarea>
+          </div>
+          <button class="btn-submit" type="submit">문의 보내기 →</button>
+        </form>
+
+      </div>
+    </section>
+
     <!-- 푸터 -->
     <footer class="site-footer">
       <div class="header-dot"></div>

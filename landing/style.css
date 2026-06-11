@@ -280,6 +280,95 @@ body::before {
   color: var(--text-secondary);
 }
 
+/* ── 제휴 문의 섹션 ── */
+
+.contact {
+  padding: 56px 48px 72px;
+  border-top: 1px solid var(--line);
+}
+
+.contact-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.form-input {
+  background: var(--surface);
+  border: 1px solid var(--line-bright);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 300;
+  padding: 11px 14px;
+  outline: none;
+  width: 100%;
+  transition: border-color var(--t-fast), background-color var(--t-mid);
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.form-input::placeholder {
+  color: var(--text-dim);
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.7;
+}
+
+.btn-submit {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  padding: 14px 28px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: opacity var(--t-fast);
+  text-transform: uppercase;
+}
+
+.btn-submit:hover {
+  opacity: 0.85;
+}
+
 /* ── stagger 애니메이션 ── */
 
 .card:nth-child(1) { animation: fadeUp 0.5s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
@@ -299,10 +388,10 @@ body::before {
 /* ── 반응형 ── */
 
 @media (max-width: 600px) {
-  .hero  { padding: 48px 24px 48px; }
-  .about { padding: 40px 24px 56px; }
+  .hero    { padding: 48px 24px 48px; }
+  .about   { padding: 40px 24px 56px; }
+  .contact { padding: 40px 24px 56px; }
 
-  .cards {
-    grid-template-columns: 1fr;
-  }
+  .cards    { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
 }
