@@ -1,0 +1,382 @@
+/* ===========================
+   LINER CALCULATOR — CSS
+   Dark Minimalist Linear Design
+   =========================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Colors */
+  --bg:          #0a0a0a;
+  --surface:     #111111;
+  --line:        #2a2a2a;
+  --line-bright: #444444;
+  --text-primary: #f0f0f0;
+  --text-secondary: #666666;
+  --text-dim:    #333333;
+  --accent:      #e8e8e8;
+  --op-color:    #c8ff00;
+  --op-bg:       transparent;
+  --eq-color:    #0a0a0a;
+  --eq-bg:       #c8ff00;
+
+  /* Spacing */
+  --gap: 1px;
+  --border-w: 1px;
+
+  /* Font */
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
+
+  /* Animation */
+  --t-fast: 120ms;
+  --t-mid:  220ms;
+}
+
+/* ── Body & Scene ── */
+
+body {
+  background-color: var(--bg);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Subtle background grid */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.scene {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ── Wrapper ── */
+
+.calc-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 320px;
+}
+
+/* ── Header ── */
+
+.calc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: var(--border-w) solid var(--line);
+  border-bottom: none;
+  background: var(--surface);
+}
+
+.header-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--line-bright);
+  background: transparent;
+}
+
+.header-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+/* ── Calculator Shell ── */
+
+.calculator {
+  border: var(--border-w) solid var(--line);
+  background: var(--surface);
+  position: relative;
+}
+
+/* ── Display ── */
+
+.display {
+  padding: 24px 20px 20px;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative corner lines */
+.display::before,
+.display::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+}
+.display::before {
+  top: 10px;
+  left: 10px;
+  border-top: 1px solid var(--line-bright);
+  border-left: 1px solid var(--line-bright);
+}
+.display::after {
+  top: 10px;
+  right: 10px;
+  border-top: 1px solid var(--line-bright);
+  border-right: 1px solid var(--line-bright);
+}
+
+.display-expression {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  min-height: 18px;
+  transition: opacity var(--t-fast);
+  word-break: break-all;
+  text-align: right;
+}
+
+.display-value {
+  font-family: var(--font-mono);
+  font-size: 42px;
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  transition: transform var(--t-fast) ease, opacity var(--t-fast);
+  word-break: break-all;
+  text-align: right;
+  max-width: 100%;
+}
+
+.display-value.pop {
+  animation: popIn var(--t-mid) ease;
+}
+
+@keyframes popIn {
+  0%   { transform: scale(0.96); opacity: 0.7; }
+  60%  { transform: scale(1.02); }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+/* ── Divider ── */
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--line-bright) 20%,
+    var(--line-bright) 80%,
+    transparent 100%
+  );
+  margin: 0 12px;
+}
+
+/* ── Button Grid ── */
+
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+  background: var(--line);
+  border-top: var(--border-w) solid var(--line);
+  padding: var(--gap);
+}
+
+/* ── Buttons ── */
+
+.btn {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  background: var(--surface);
+  color: var(--text-primary);
+  position: relative;
+  overflow: hidden;
+  transition:
+    background var(--t-fast),
+    color var(--t-fast),
+    transform var(--t-fast);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ripple overlay */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.04);
+  opacity: 0;
+  transition: opacity var(--t-fast);
+}
+
+.btn:hover::after  { opacity: 1; }
+.btn:active        { transform: scale(0.96); }
+.btn:active::after { opacity: 0; background: rgba(255,255,255,0.08); }
+
+/* Active press flash */
+.btn.pressed {
+  animation: btnPress 150ms ease;
+}
+@keyframes btnPress {
+  0%   { background: #1e1e1e; }
+  50%  { background: #252525; }
+  100% { background: var(--surface); }
+}
+
+/* ── Number Buttons ── */
+
+.btn-num {
+  color: var(--text-primary);
+}
+
+/* ── Function Buttons (AC / +/- / %) ── */
+
+.btn-fn {
+  color: var(--text-secondary);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.btn-fn:hover { color: var(--accent); }
+
+/* ── Operator Buttons ── */
+
+.btn-op {
+  color: var(--op-color);
+  font-size: 22px;
+  font-weight: 300;
+}
+
+.btn-op.active-op {
+  background: rgba(200, 255, 0, 0.08);
+}
+
+/* ── Equals Button ── */
+
+.btn-eq {
+  background: var(--eq-bg);
+  color: var(--eq-color);
+  font-size: 22px;
+  font-weight: 500;
+  grid-column: span 1;
+  position: relative;
+}
+
+.btn-eq::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background var(--t-fast);
+}
+
+.btn-eq:hover::before {
+  background: rgba(255,255,255,0.15);
+}
+
+.btn-eq::after {
+  display: none;
+}
+
+.btn-eq:active { transform: scale(0.95); }
+
+/* ── Zero Button (wide) ── */
+
+.btn-zero {
+  grid-column: span 2;
+  justify-content: flex-start;
+  padding-left: 26px;
+}
+
+/* ── Footer ── */
+
+.calc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border: var(--border-w) solid var(--line);
+  border-top: none;
+  background: var(--surface);
+}
+
+.footer-text {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--text-dim);
+  text-transform: lowercase;
+}
+
+/* ── Error State ── */
+
+.display-value.error {
+  font-size: 20px;
+  color: #ff6b6b;
+}
+
+/* ── Scrollbar (for long numbers) ── */
+
+::-webkit-scrollbar { display: none; }
+
+/* ── Responsive ── */
+
+@media (max-width: 380px) {
+  .calc-wrapper { width: 100%; max-width: 320px; }
+  .btn { height: 62px; }
+}
+
+/* ── Entrance Animation ── */
+
+.calc-wrapper {
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
