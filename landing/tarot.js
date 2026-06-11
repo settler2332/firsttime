@@ -283,6 +283,10 @@ function renderLotto() {
       </div>`;
     container.appendChild(row);
   });
+
+  const km = Math.floor(Math.random() * 11) + 5;
+  document.getElementById('runningBanner').textContent =
+    `로또 당첨을 위한 R37 RUNNERS 오늘의 러닝 거리 : ${km} km`;
 }
 
 document.getElementById('btnLottoRefresh').addEventListener('click', renderLotto);

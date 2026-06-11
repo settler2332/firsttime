@@ -503,6 +503,22 @@ body::before {
 .lotto-ball.r31 { background: #6e6e6e; color: #fff; }  /* 31-40 회색 */
 .lotto-ball.r41 { background: #43a86e; color: #fff; }  /* 41-45 초록 */
 
+.running-banner {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  border: 1px solid rgba(200, 255, 0, 0.25);
+  padding: 13px 16px;
+  letter-spacing: 0.04em;
+  margin-top: 6px;
+  transition: border-color var(--t-mid);
+}
+
+:root[data-theme="light"] .running-banner {
+  border-color: rgba(74, 122, 0, 0.3);
+}
+
 /* ── 다시 뽑기 버튼 ── */
 
 .btn-retry {
