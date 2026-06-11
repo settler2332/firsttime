@@ -1,132 +1,156 @@
+const BASE = 'https://upload.wikimedia.org/wikipedia/commons/thumb';
+
 const TAROT = [
   {
-    num: '0', name: '바보', symbol: '◯',
+    num: '0', name: '바보',
+    img: `${BASE}/9/90/RWS_Tarot_00_Fool.jpg/300px-RWS_Tarot_00_Fool.jpg`,
     past: '아무 걱정 없이 내딛었던 첫걸음이 지금의 당신을 만들었습니다.',
     present: '두려움을 내려놓고 새로운 여정에 뛰어들 때입니다.',
     future: '예상치 못한 자유로운 길이 당신 앞에 펼쳐질 것입니다.',
   },
   {
-    num: 'I', name: '마법사', symbol: '✦',
+    num: 'I', name: '마법사',
+    img: `${BASE}/d/de/RWS_Tarot_01_Magician.jpg/300px-RWS_Tarot_01_Magician.jpg`,
     past: '당신의 의지와 재능이 현재 상황의 초석이 되었습니다.',
     present: '모든 도구가 준비되어 있습니다. 지금 실행에 옮기세요.',
     future: '강한 집중력으로 원하는 것을 현실로 만들 수 있습니다.',
   },
   {
-    num: 'II', name: '여사제', symbol: '☽',
+    num: 'II', name: '여사제',
+    img: `${BASE}/8/88/RWS_Tarot_02_High_Priestess.jpg/300px-RWS_Tarot_02_High_Priestess.jpg`,
     past: '직관과 내면의 목소리가 당신을 여기까지 이끌었습니다.',
     present: '숨겨진 진실에 귀를 기울이고 내면의 지혜를 신뢰하세요.',
     future: '비밀이 밝혀지고 깊은 통찰이 새로운 길을 열 것입니다.',
   },
   {
-    num: 'III', name: '여황제', symbol: '✿',
+    num: 'III', name: '여황제',
+    img: `${BASE}/d/d2/RWS_Tarot_03_Empress.jpg/300px-RWS_Tarot_03_Empress.jpg`,
     past: '풍요로운 환경이 당신을 성장시키고 길러주었습니다.',
     present: '창의성과 풍요로움이 당신 안에서 피어나고 있습니다.',
     future: '풍성한 결실이 가까이 다가오고 있습니다.',
   },
   {
-    num: 'IV', name: '황제', symbol: '⊕',
+    num: 'IV', name: '황제',
+    img: `${BASE}/c/c3/RWS_Tarot_04_Emperor.jpg/300px-RWS_Tarot_04_Emperor.jpg`,
     past: '강한 기반과 질서가 오늘의 안정을 만들어 주었습니다.',
     present: '리더십을 발휘하고 주도적으로 상황을 통제하세요.',
     future: '구조와 권위를 통해 원하는 목표를 달성할 것입니다.',
   },
   {
-    num: 'V', name: '교황', symbol: '⊞',
+    num: 'V', name: '교황',
+    img: `${BASE}/8/8d/RWS_Tarot_05_Hierophant.jpg/300px-RWS_Tarot_05_Hierophant.jpg`,
     past: '전통과 가르침이 당신의 가치관을 형성했습니다.',
     present: '믿음직한 조언자를 찾거나 지혜를 나누는 시간입니다.',
     future: '정신적 지도와 가르침이 새로운 길을 열어줄 것입니다.',
   },
   {
-    num: 'VI', name: '연인들', symbol: '♡',
+    num: 'VI', name: '연인들',
+    img: `${BASE}/d/db/RWS_Tarot_06_Lovers.jpg/300px-RWS_Tarot_06_Lovers.jpg`,
     past: '중요한 선택이 지금의 관계와 가치관을 빚어냈습니다.',
     present: '가슴이 이끄는 방향으로 선택을 내려야 할 때입니다.',
     future: '깊은 연결과 조화로운 합일이 기다리고 있습니다.',
   },
   {
-    num: 'VII', name: '전차', symbol: '▲',
+    num: 'VII', name: '전차',
+    img: `${BASE}/9/9b/RWS_Tarot_07_Chariot.jpg/300px-RWS_Tarot_07_Chariot.jpg`,
     past: '강한 의지와 집중으로 어려운 시기를 돌파해 왔습니다.',
     present: '앞을 향해 힘차게 나아가세요. 승리는 가까이 있습니다.',
     future: '목표를 향한 돌진이 큰 성취로 이어질 것입니다.',
   },
   {
-    num: 'VIII', name: '힘', symbol: '∞',
+    num: 'VIII', name: '힘',
+    img: `${BASE}/f/f5/RWS_Tarot_08_Strength.jpg/300px-RWS_Tarot_08_Strength.jpg`,
     past: '내면의 용기가 두려움을 이기고 오늘을 만들었습니다.',
     present: '부드러운 힘으로 상황을 다스리는 것이 필요합니다.',
     future: '내면의 강인함이 시련을 가볍게 넘길 수 있게 해줄 것입니다.',
   },
   {
-    num: 'IX', name: '은둔자', symbol: '◎',
+    num: 'IX', name: '은둔자',
+    img: `${BASE}/4/4d/RWS_Tarot_09_Hermit.jpg/300px-RWS_Tarot_09_Hermit.jpg`,
     past: '고독한 성찰의 시간이 지혜를 쌓게 해주었습니다.',
     present: '잠시 물러나 자신의 내면을 들여다볼 때입니다.',
     future: '고요한 성찰 끝에 중요한 진리를 발견하게 될 것입니다.',
   },
   {
-    num: 'X', name: '운명의 수레바퀴', symbol: '◉',
+    num: 'X', name: '운명의 수레바퀴',
+    img: `${BASE}/3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg/300px-RWS_Tarot_10_Wheel_of_Fortune.jpg`,
     past: '삶의 순환이 당신을 지금 이 자리로 데려왔습니다.',
     present: '변화의 바람이 불고 있습니다. 흐름에 몸을 맡기세요.',
     future: '행운의 전환점이 가까이 다가오고 있습니다.',
   },
   {
-    num: 'XI', name: '정의', symbol: '⚖',
+    num: 'XI', name: '정의',
+    img: `${BASE}/e/e0/RWS_Tarot_11_Justice.jpg/300px-RWS_Tarot_11_Justice.jpg`,
     past: '공정한 결과가 현재 상황의 토대가 되었습니다.',
     present: '균형 잡힌 시각으로 공정한 판단을 내려야 합니다.',
     future: '진실과 균형이 회복되고 올바른 결과를 얻게 될 것입니다.',
   },
   {
-    num: 'XII', name: '매달린 사람', symbol: '⊗',
+    num: 'XII', name: '매달린 사람',
+    img: `${BASE}/2/2b/RWS_Tarot_12_Hanged_Man.jpg/300px-RWS_Tarot_12_Hanged_Man.jpg`,
     past: '잠시 멈추고 기다린 시간이 오히려 깊은 통찰을 주었습니다.',
     present: '다른 관점으로 세상을 바라보면 새로운 해답이 보입니다.',
     future: '희생과 기다림 뒤에 예상치 못한 깨달음이 찾아올 것입니다.',
   },
   {
-    num: 'XIII', name: '죽음', symbol: '✕',
+    num: 'XIII', name: '죽음',
+    img: `${BASE}/d/d7/RWS_Tarot_13_Death.jpg/300px-RWS_Tarot_13_Death.jpg`,
     past: '중요한 것의 끝이 새로운 시작의 씨앗이 되었습니다.',
     present: '과거를 놓아보내고 변화를 기꺼이 받아들이세요.',
     future: '커다란 변환이 찾아와 완전히 새로운 국면이 시작됩니다.',
   },
   {
-    num: 'XIV', name: '절제', symbol: '≈',
+    num: 'XIV', name: '절제',
+    img: `${BASE}/f/f8/RWS_Tarot_14_Temperance.jpg/300px-RWS_Tarot_14_Temperance.jpg`,
     past: '인내와 조화로운 균형이 오늘을 만들어 왔습니다.',
     present: '서두르지 말고 차분하게 균형을 맞추어 나가세요.',
     future: '인내의 시간이 지나면 완벽한 조화가 이루어질 것입니다.',
   },
   {
-    num: 'XV', name: '악마', symbol: '⬡',
+    num: 'XV', name: '악마',
+    img: `${BASE}/5/55/RWS_Tarot_15_Devil.jpg/300px-RWS_Tarot_15_Devil.jpg`,
     past: '욕망이나 두려움에 얽매인 시간이 있었습니다.',
     present: '스스로를 옥죄는 것이 무엇인지 직시하고 벗어나세요.',
     future: '묶여 있던 것에서 해방되어 진정한 자유를 되찾을 것입니다.',
   },
   {
-    num: 'XVI', name: '탑', symbol: '⊟',
+    num: 'XVI', name: '탑',
+    img: `${BASE}/5/53/RWS_Tarot_16_Tower.jpg/300px-RWS_Tarot_16_Tower.jpg`,
     past: '예상치 못한 충격이 오래된 구조를 무너뜨렸습니다.',
     present: '갑작스러운 변화가 찾아올 수 있지만 두려워하지 마세요.',
     future: '낡은 것이 무너진 자리에 더 강한 것이 세워질 것입니다.',
   },
   {
-    num: 'XVII', name: '별', symbol: '★',
+    num: 'XVII', name: '별',
+    img: `${BASE}/d/db/RWS_Tarot_17_Star.jpg/300px-RWS_Tarot_17_Star.jpg`,
     past: '희망과 치유의 빛이 어두운 시간을 밝혀주었습니다.',
     present: '희망을 잃지 마세요. 당신은 올바른 길 위에 있습니다.',
     future: '밝은 미래가 기다리고 있습니다. 꿈을 포기하지 마세요.',
   },
   {
-    num: 'XVIII', name: '달', symbol: '◐',
+    num: 'XVIII', name: '달',
+    img: `${BASE}/7/7f/RWS_Tarot_18_Moon.jpg/300px-RWS_Tarot_18_Moon.jpg`,
     past: '불확실성과 환상 속에서도 전진해 왔습니다.',
     present: '보이는 것이 전부가 아닙니다. 직관을 믿고 나아가세요.',
     future: '혼란이 걷히고 숨겨진 진실이 서서히 드러날 것입니다.',
   },
   {
-    num: 'XIX', name: '태양', symbol: '☀',
+    num: 'XIX', name: '태양',
+    img: `${BASE}/1/17/RWS_Tarot_19_Sun.jpg/300px-RWS_Tarot_19_Sun.jpg`,
     past: '기쁨과 활기찬 에너지가 당신을 성장시켰습니다.',
     present: '당신의 빛을 마음껏 발산하세요. 모든 것이 잘 되고 있습니다.',
     future: '밝음과 성공이 가득한 시간이 찾아올 것입니다.',
   },
   {
-    num: 'XX', name: '심판', symbol: '◆',
+    num: 'XX', name: '심판',
+    img: `${BASE}/d/dd/RWS_Tarot_20_Judgement.jpg/300px-RWS_Tarot_20_Judgement.jpg`,
     past: '중요한 깨달음이 과거의 자신에서 벗어나게 해주었습니다.',
     present: '내면의 부름에 응답하고 진정한 자신으로 거듭날 때입니다.',
     future: '완전한 각성과 새로운 시작이 눈앞에 다가오고 있습니다.',
   },
   {
-    num: 'XXI', name: '세계', symbol: '⊙',
+    num: 'XXI', name: '세계',
+    img: `${BASE}/f/ff/RWS_Tarot_21_World.jpg/300px-RWS_Tarot_21_World.jpg`,
     past: '긴 여정을 완성하고 중요한 성취를 이루어 왔습니다.',
     present: '한 사이클의 완성을 축하하고 다음 단계를 준비하세요.',
     future: '완전한 성취와 충만함이 당신의 것이 될 것입니다.',
@@ -172,9 +196,11 @@ function renderCards(cards) {
           <span class="tc-back-symbol">✦</span>
         </div>
         <div class="tc-face tc-front">
-          <span class="tc-num">${card.num}</span>
-          <span class="tc-symbol">${card.symbol}</span>
-          <span class="tc-name">${card.name}</span>
+          <img class="tc-img" src="${card.img}" alt="${card.name}" loading="lazy" />
+          <div class="tc-card-label">
+            <span class="tc-num">${card.num}</span>
+            <span class="tc-name">${card.name}</span>
+          </div>
         </div>
       </div>
       <span class="tc-pos-label">${pos.ko}</span>
@@ -234,7 +260,6 @@ function startReading() {
   });
 }
 
-// 이벤트 연결
 document.getElementById('btnTarot').addEventListener('click', () => {
   document.getElementById('tarotOverlay').classList.add('is-open');
   document.body.style.overflow = 'hidden';

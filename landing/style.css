@@ -550,33 +550,47 @@ body::before {
 .tc-front {
   transform: rotateY(180deg);
   background: var(--surface);
-  gap: 8px;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  justify-content: flex-start;
+}
+
+.tc-img {
+  width: 100%;
+  flex: 1;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  min-height: 0;
+}
+
+.tc-card-label {
+  padding: 6px 8px 7px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  transition: background-color var(--t-mid);
+  flex-shrink: 0;
 }
 
 .tc-num {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 8px;
   color: var(--text-dim);
   letter-spacing: 0.2em;
-  align-self: flex-start;
-}
-
-.tc-symbol {
-  font-size: 28px;
-  color: var(--accent);
-  line-height: 1;
-  flex: 1;
-  display: flex;
-  align-items: center;
 }
 
 .tc-name {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
   color: var(--text-primary);
-  letter-spacing: 0.05em;
-  align-self: flex-start;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tc-pos-label {
