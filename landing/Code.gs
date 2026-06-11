@@ -52,17 +52,32 @@ function handleRequest(params) {
     const sheet = ss.getSheetByName(sheetName);
     if (!sheet) return { ok: false, msg: '"' + sheetName + '" 시트를 찾을 수 없습니다.' };
 
-    const data    = sheet.getDataRange().getValues();
-    const headers = data[0];
+    const data = sheet.getDataRange().getValues();
 
-    const nameColIdx = headers.indexOf('이름');
-    const dayColIdx  = headers.indexOf(day + '일');
+    // 헤더 행 탐색 (공백 trim, 최대 5행까지)
+    let headerRowIdx = -1;
+    let nameColIdx = -1;
+    let dayColIdx  = -1;
+    const dayLabel = day + '일';
 
-    if (nameColIdx === -1) return { ok: false, msg: '"이름" 열을 찾을 수 없습니다.' };
-    if (dayColIdx  === -1) return { ok: false, msg: day + '일 열을 찾을 수 없습니다.' };
+    for (let r = 0; r < Math.min(5, data.length); r++) {
+      const row = data[r].map(c => String(c).trim());
+      const ni = row.indexOf('이름');
+      const di = row.indexOf(dayLabel);
+      if (ni !== -1) { headerRowIdx = r; nameColIdx = ni; }
+      if (di !== -1) { dayColIdx = di; }
+      if (nameColIdx !== -1 && dayColIdx !== -1) break;
+    }
+
+    if (nameColIdx === -1) {
+      // 디버깅용: 첫 행 헤더 목록 반환
+      const preview = data[0].map(c => String(c).trim()).filter(c => c).join(', ');
+      return { ok: false, msg: '"이름" 열을 찾을 수 없습니다. 헤더 확인: [' + preview + ']' };
+    }
+    if (dayColIdx === -1) return { ok: false, msg: '"' + dayLabel + '" 열을 찾을 수 없습니다.' };
 
     let rowIdx = -1;
-    for (let i = 1; i < data.length; i++) {
+    for (let i = headerRowIdx + 1; i < data.length; i++) {
       if (String(data[i][nameColIdx]).trim() === name) { rowIdx = i; break; }
     }
     if (rowIdx === -1) return { ok: false, msg: '"' + name + '" 이름을 찾을 수 없습니다.' };
