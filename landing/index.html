@@ -23,15 +23,12 @@
     <header class="site-header">
       <div class="header-dot"></div>
       <span class="header-label">AI SYNC CLUB</span>
-      <div class="header-actions">
-        <button class="run-log-btn" id="btnRunLog">기록 입력</button>
-        <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">LIGHT</button>
-      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">LIGHT</button>
     </header>
 
+    <!-- 타로 섹션 -->
     <main class="tarot-main">
 
-      <!-- 인트로 -->
       <section class="tarot-intro" id="tarotIntro">
         <span class="tag">TODAY'S READING</span>
         <h1 class="tarot-page-title">오늘의<br>타로</h1>
@@ -42,13 +39,11 @@
         <button class="btn-read" id="btnRead">운세 보기 →</button>
       </section>
 
-      <!-- 리딩 결과 -->
       <section class="tarot-reading" id="tarotReading">
         <p class="tarot-reading-sub" id="tarotSub">카드를 뽑는 중입니다...</p>
         <div class="tarot-cards-row" id="tarotCardsRow"></div>
         <div class="tarot-fortune" id="tarotFortune"></div>
 
-        <!-- 로또 번호 -->
         <div class="lotto-section" id="lottoSection">
           <div class="lotto-header">
             <span class="lotto-label">LOTTO · 이번 주 행운 번호</span>
@@ -63,21 +58,11 @@
 
     </main>
 
-    <footer class="site-footer">
-      <div class="header-dot"></div>
-      <span class="footer-label">ai sync club · 2025</span>
-      <div class="header-dot"></div>
-    </footer>
-
-  </div>
-
-  <!-- 러닝 기록 입력 모달 -->
-  <div class="run-overlay" id="runOverlay">
-    <div class="run-modal">
-      <header class="run-modal-header">
-        <span class="run-modal-title">R37 RUNNERS · 기록 입력</span>
-        <button class="run-modal-close" id="runClose" aria-label="닫기">✕</button>
-      </header>
+    <!-- 뜀박질 입력 섹션 -->
+    <section class="runner-section">
+      <span class="tag runner-tag">RUNNING LOG</span>
+      <h2 class="runner-title">R37 RUNNERS<br>뜀박질 입력</h2>
+      <p class="runner-desc">날짜, 이름, 거리를 입력하면<br>구글 시트에 자동으로 기록됩니다.</p>
 
       <form class="run-form" id="runForm" novalidate>
         <div class="run-form-group">
@@ -94,9 +79,16 @@
                  placeholder="0.0" step="0.1" min="0.1" max="999" required />
         </div>
         <p class="run-form-status" id="runStatus"></p>
-        <button class="run-form-submit" type="submit" id="runSubmit">저장하기 →</button>
+        <button class="run-form-submit run-submit-green" type="submit" id="runSubmit">저장하기 →</button>
       </form>
-    </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="header-dot"></div>
+      <span class="footer-label">ai sync club · 2025</span>
+      <div class="header-dot"></div>
+    </footer>
+
   </div>
 
   <script src="script.js"></script>

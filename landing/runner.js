@@ -33,22 +33,6 @@ function callScriptAPI(params) {
   });
 }
 
-// 모달 열기/닫기
-
-function openRunModal() {
-  document.getElementById('runDate').value = todayString();
-  document.getElementById('runStatus').textContent = '';
-  document.getElementById('runStatus').className = 'run-form-status';
-  document.getElementById('runOverlay').classList.add('is-open');
-  document.body.style.overflow = 'hidden';
-  setTimeout(() => document.getElementById('runName').focus(), 200);
-}
-
-function closeRunModal() {
-  document.getElementById('runOverlay').classList.remove('is-open');
-  document.body.style.overflow = '';
-}
-
 function todayString() {
   const d = new Date();
   const y = d.getFullYear();
@@ -57,8 +41,10 @@ function todayString() {
   return y + '-' + m + '-' + day;
 }
 
-// 폼 제출
+// 페이지 로드 시 오늘 날짜 세팅
+document.getElementById('runDate').value = todayString();
 
+// 폼 제출
 document.getElementById('runForm').addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -79,8 +65,8 @@ document.getElementById('runForm').addEventListener('submit', (e) => {
       if (data.ok) {
         status.textContent = '✓ ' + data.msg;
         status.className = 'run-form-status ok';
-        document.getElementById('runForm').reset();
-        document.getElementById('runDate').value = todayString();
+        document.getElementById('runDist').value = '';
+        document.getElementById('runName').value = '';
       } else {
         status.textContent = '✗ ' + data.msg;
         status.className = 'run-form-status err';
@@ -91,13 +77,4 @@ document.getElementById('runForm').addEventListener('submit', (e) => {
       status.className = 'run-form-status err';
     })
     .finally(() => { btn.disabled = false; });
-});
-
-document.getElementById('btnRunLog').addEventListener('click', openRunModal);
-document.getElementById('runClose').addEventListener('click', closeRunModal);
-document.getElementById('runOverlay').addEventListener('click', (e) => {
-  if (e.target === e.currentTarget) closeRunModal();
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeRunModal();
 });

@@ -569,74 +569,41 @@ body::before {
   border-color: var(--text-secondary);
 }
 
-/* ── 러닝 기록 모달 ── */
+/* ── 뜀박질 입력 섹션 ── */
 
-.run-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 300;
-  background: rgba(0, 0, 0, 0.88);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--t-mid);
-}
-
-.run-overlay.is-open {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.run-modal {
-  background: var(--surface);
-  border: 1px solid var(--line-bright);
-  width: 100%;
-  max-width: 420px;
-  padding: 32px;
+.runner-section {
+  border-top: 1px solid var(--line);
+  padding: 64px 48px 72px;
   display: flex;
   flex-direction: column;
   gap: 28px;
-  transform: translateY(20px);
-  transition: transform var(--t-mid), background-color var(--t-mid);
+  transition: border-color var(--t-mid);
 }
 
-.run-overlay.is-open .run-modal {
-  transform: translateY(0);
+.runner-tag {
+  border-color: rgba(34, 197, 94, 0.35);
+  color: #22c55e;
 }
 
-.run-modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+:root[data-theme="light"] .runner-tag {
+  border-color: rgba(22, 163, 74, 0.35);
+  color: #16a34a;
 }
 
-.run-modal-title {
+.runner-title {
   font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.35em;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-}
-
-.run-modal-close {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-secondary);
-  background: none;
-  border: 1px solid var(--line-bright);
-  padding: 4px 10px;
-  cursor: pointer;
-  transition: color var(--t-fast), border-color var(--t-fast);
-  letter-spacing: 0.1em;
-}
-
-.run-modal-close:hover {
+  font-size: clamp(44px, 10vw, 80px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
-  border-color: var(--text-secondary);
+}
+
+.runner-desc {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--text-secondary);
 }
 
 /* ── 러닝 폼 ── */
@@ -720,6 +687,12 @@ body::before {
 .run-form-submit:hover  { opacity: 0.85; }
 .run-form-submit:disabled { opacity: 0.4; cursor: not-allowed; }
 
+.run-submit-green {
+  background: #22c55e;
+  color: #fff;
+}
+.run-submit-green:hover { background: #16a34a; opacity: 1; }
+
 /* ── 애니메이션 ── */
 
 @keyframes slideUp {
@@ -731,6 +704,7 @@ body::before {
 
 @media (max-width: 600px) {
   .tarot-main      { padding: 48px 24px 56px; }
+  .runner-section  { padding: 48px 24px 56px; }
   .tarot-cards-row { gap: 8px; }
   .tc-name         { font-size: 9px; }
   .lotto-ball      { width: 30px; height: 30px; font-size: 10px; }
