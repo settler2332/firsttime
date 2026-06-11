@@ -23,7 +23,10 @@
     <header class="site-header">
       <div class="header-dot"></div>
       <span class="header-label">AI SYNC CLUB</span>
-      <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">LIGHT</button>
+      <div class="header-actions">
+        <button class="run-log-btn" id="btnRunLog">기록 입력</button>
+        <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">LIGHT</button>
+      </div>
     </header>
 
     <main class="tarot-main">
@@ -68,7 +71,36 @@
 
   </div>
 
+  <!-- 러닝 기록 입력 모달 -->
+  <div class="run-overlay" id="runOverlay">
+    <div class="run-modal">
+      <header class="run-modal-header">
+        <span class="run-modal-title">R37 RUNNERS · 기록 입력</span>
+        <button class="run-modal-close" id="runClose" aria-label="닫기">✕</button>
+      </header>
+
+      <form class="run-form" id="runForm" novalidate>
+        <div class="run-form-group">
+          <label class="run-form-label" for="runDate">날짜</label>
+          <input class="run-form-input" type="date" id="runDate" name="date" required />
+        </div>
+        <div class="run-form-group">
+          <label class="run-form-label" for="runName">이름</label>
+          <input class="run-form-input" type="text" id="runName" name="name" placeholder="이름을 입력하세요" required autocomplete="off" />
+        </div>
+        <div class="run-form-group">
+          <label class="run-form-label" for="runDist">거리 (km)</label>
+          <input class="run-form-input" type="number" id="runDist" name="distance"
+                 placeholder="0.0" step="0.1" min="0.1" max="999" required />
+        </div>
+        <p class="run-form-status" id="runStatus"></p>
+        <button class="run-form-submit" type="submit" id="runSubmit">저장하기 →</button>
+      </form>
+    </div>
+  </div>
+
   <script src="script.js"></script>
   <script src="tarot.js"></script>
+  <script src="runner.js"></script>
 </body>
 </html>

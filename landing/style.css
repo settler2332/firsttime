@@ -115,6 +115,34 @@ body::before {
   text-transform: lowercase;
 }
 
+/* ── 헤더 액션 그룹 ── */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.run-log-btn {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  background: none;
+  border: 1px solid var(--accent);
+  padding: 4px 9px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background var(--t-fast), color var(--t-fast);
+  line-height: 1.4;
+}
+
+.run-log-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
 /* ── 테마 토글 ── */
 
 .theme-toggle {
@@ -540,6 +568,157 @@ body::before {
   color: var(--text-primary);
   border-color: var(--text-secondary);
 }
+
+/* ── 러닝 기록 모달 ── */
+
+.run-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-mid);
+}
+
+.run-overlay.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.run-modal {
+  background: var(--surface);
+  border: 1px solid var(--line-bright);
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  transform: translateY(20px);
+  transition: transform var(--t-mid), background-color var(--t-mid);
+}
+
+.run-overlay.is-open .run-modal {
+  transform: translateY(0);
+}
+
+.run-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.run-modal-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.run-modal-close {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: none;
+  border: 1px solid var(--line-bright);
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: color var(--t-fast), border-color var(--t-fast);
+  letter-spacing: 0.1em;
+}
+
+.run-modal-close:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+/* ── 러닝 폼 ── */
+
+.run-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.run-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.run-form-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.run-form-input {
+  background: var(--bg);
+  border: 1px solid var(--line-bright);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 300;
+  padding: 11px 14px;
+  outline: none;
+  width: 100%;
+  border-radius: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color var(--t-fast), background-color var(--t-mid);
+}
+
+.run-form-input::placeholder {
+  color: var(--text-dim);
+}
+
+.run-form-input:focus {
+  border-color: var(--accent);
+}
+
+/* date input 캘린더 아이콘 색상 */
+:root[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.run-form-status {
+  min-height: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  transition: color var(--t-fast);
+}
+
+.run-form-status.ok  { color: var(--accent); }
+.run-form-status.err { color: #e04040; }
+
+.run-form-submit {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  padding: 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: opacity var(--t-fast);
+  margin-top: 4px;
+}
+
+.run-form-submit:hover  { opacity: 0.85; }
+.run-form-submit:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* ── 애니메이션 ── */
 
