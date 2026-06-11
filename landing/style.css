@@ -369,6 +369,302 @@ body::before {
   opacity: 0.85;
 }
 
+/* ── 타로 CTA 섹션 ── */
+
+.tarot-cta {
+  padding: 56px 48px 72px;
+  text-align: center;
+}
+
+.tarot-cta-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.tarot-cta-title {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 0.1em;
+}
+
+.tarot-cta-body {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.btn-tarot {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  background: none;
+  border: 1px solid var(--accent);
+  padding: 13px 32px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 8px;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.btn-tarot:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ── 타로 모달 오버레이 ── */
+
+.tarot-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 48px 20px 60px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-mid);
+}
+
+.tarot-overlay.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.tarot-modal {
+  background: var(--surface);
+  border: 1px solid var(--line-bright);
+  max-width: 680px;
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  transform: translateY(24px);
+  transition: transform var(--t-mid), background-color var(--t-mid);
+}
+
+.tarot-overlay.is-open .tarot-modal {
+  transform: translateY(0);
+}
+
+.tarot-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tarot-close {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: none;
+  border: 1px solid var(--line-bright);
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: color var(--t-fast), border-color var(--t-fast);
+  letter-spacing: 0.1em;
+}
+
+.tarot-close:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+.tarot-modal-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.2em;
+  text-align: center;
+  transition: opacity var(--t-mid);
+}
+
+/* ── 카드 플립 ── */
+
+.tarot-cards-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.tc-wrap {
+  perspective: 1000px;
+  flex: 1;
+  max-width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.tc-inner {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tc-wrap.flipped .tc-inner {
+  transform: rotateY(180deg);
+}
+
+.tc-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-bright);
+  padding: 12px 10px;
+  transition: border-color var(--t-mid);
+}
+
+.tc-back {
+  background: var(--surface);
+  background-image:
+    repeating-linear-gradient(45deg,
+      var(--line) 0px, var(--line) 1px,
+      transparent 1px, transparent 10px);
+  justify-content: center;
+}
+
+.tc-back-symbol {
+  font-size: 22px;
+  color: var(--line-bright);
+}
+
+.tc-front {
+  transform: rotateY(180deg);
+  background: var(--surface);
+  gap: 8px;
+}
+
+.tc-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.2em;
+  align-self: flex-start;
+}
+
+.tc-symbol {
+  font-size: 28px;
+  color: var(--accent);
+  line-height: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.tc-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  align-self: flex-start;
+}
+
+.tc-pos-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* ── 운세 텍스트 ── */
+
+.tarot-fortune {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.tarot-fortune.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fortune-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 16px;
+  border-left: 2px solid var(--accent);
+}
+
+.fortune-pos {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.fortune-card-name {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.fortune-text {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.fortune-summary {
+  padding: 20px;
+  border: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--text-secondary);
+  font-style: italic;
+  background: var(--bg);
+  transition: background-color var(--t-mid), border-color var(--t-mid);
+}
+
+.btn-retry {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: var(--text-secondary);
+  background: none;
+  border: 1px solid var(--line-bright);
+  padding: 12px 24px;
+  cursor: pointer;
+  align-self: center;
+  transition: color var(--t-fast), border-color var(--t-fast);
+  text-transform: uppercase;
+}
+
+.btn-retry:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
 /* ── stagger 애니메이션 ── */
 
 .card:nth-child(1) { animation: fadeUp 0.5s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
@@ -388,10 +684,15 @@ body::before {
 /* ── 반응형 ── */
 
 @media (max-width: 600px) {
-  .hero    { padding: 48px 24px 48px; }
-  .about   { padding: 40px 24px 56px; }
-  .contact { padding: 40px 24px 56px; }
+  .hero      { padding: 48px 24px 48px; }
+  .about     { padding: 40px 24px 56px; }
+  .contact   { padding: 40px 24px 56px; }
+  .tarot-cta { padding: 40px 24px 56px; }
+  .tarot-modal { padding: 28px 20px; }
 
   .cards    { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
+
+  .tarot-cards-row { gap: 8px; }
+  .tc-name { font-size: 9px; }
 }
