@@ -39,12 +39,18 @@ function handleRequest(params) {
     }
 
     const parts = dateStr.split('-');
+    const year  = parseInt(parts[0], 10);
     const month = parseInt(parts[1], 10);
     const day   = parseInt(parts[2], 10);
 
+    // 2025: "6월" 형식 / 2026~: "26_6월" 형식
+    const sheetName = year >= 2026
+      ? String(year).slice(2) + '_' + month + '월'
+      : month + '월';
+
     const ss    = SpreadsheetApp.openById(SPREADSHEET_ID);
-    const sheet = ss.getSheetByName(month + '월');
-    if (!sheet) return { ok: false, msg: month + '월 시트를 찾을 수 없습니다.' };
+    const sheet = ss.getSheetByName(sheetName);
+    if (!sheet) return { ok: false, msg: '"' + sheetName + '" 시트를 찾을 수 없습니다.' };
 
     const data    = sheet.getDataRange().getValues();
     const headers = data[0];
