@@ -60,7 +60,7 @@ function handleRequest(params) {
     let dayColIdx  = -1;
     const dayLabel = day + '일';
 
-    for (let r = 0; r < Math.min(5, data.length); r++) {
+    for (let r = 0; r < Math.min(10, data.length); r++) {
       const row = data[r].map(c => String(c).trim());
       const ni = row.indexOf('이름');
       const di = row.indexOf(dayLabel);
